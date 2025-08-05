@@ -2,6 +2,9 @@ import { useState } from "react";
 import InfoBox from "./InfoBox";
 import SearchBox from "./SearchBox";
 
+import "./WeatherApp.css"; // Don't forget to import it!
+import Typography from "@mui/material/Typography";
+
 export default function WeatherApp() {
   const [weatherInfo, setWeatherInfo] = useState({
     city: "Ramu",
@@ -18,8 +21,12 @@ export default function WeatherApp() {
   };
 
   return (
-    <div style={{ textAlign: "center" }}>
-      <h2>Weather App by Tahfim</h2>
+    <div className="WeatherApp">
+      {" "}
+      {/* Use the className */}
+      <Typography className="app-title" variant="h2" component="h1">
+        Weather App by Tahfim
+      </Typography>
       <SearchBox updateInfo={updateInfo} />
       <InfoBox info={weatherInfo} />
     </div>

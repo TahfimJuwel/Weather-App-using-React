@@ -8,6 +8,7 @@ import ThunderstormIcon from "@mui/icons-material/Thunderstorm";
 import AcUnitIcon from "@mui/icons-material/AcUnit";
 
 import "./InfoBox.css";
+
 export default function InfoBox({ info }) {
   const HOT_URL =
     "https://www.aprilaire.com/blog/wp-content/uploads/2022/08/Hazy-Skies-scaled.webp";
@@ -18,9 +19,21 @@ export default function InfoBox({ info }) {
 
   return (
     <div className="InfoBox">
-      <h2 style={{ textAlign: "center" }}>Weather Information</h2>
+      {/* This title should probably be white to match the theme */}
+      <h2 style={{ textAlign: "center", color: "white" }}>
+        Weather Information
+      </h2>
       <div className="cardContainer">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card
+          sx={{
+            maxWidth: 345,
+            backgroundColor: "rgba(50, 161, 126, 0.25)", // Bluish, semi-transparent
+            backdropFilter: "blur(5px)", // The "glass" blur effect
+            border: "1px solid rgba(255, 255, 255, 0.18)", // Optional subtle border
+            borderRadius: "16px", // Softer corners
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)", // A softer shadow
+          }}
+        >
           <CardMedia
             sx={{ height: 140 }}
             image={
@@ -33,7 +46,13 @@ export default function InfoBox({ info }) {
             title="green iguana"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            {/* Make the city name white for better contrast */}
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="div"
+              sx={{ color: "white" }}
+            >
               {info.city}{" "}
               {info.humidity > 80 ? (
                 <ThunderstormIcon />
@@ -43,7 +62,12 @@ export default function InfoBox({ info }) {
                 <AcUnitIcon />
               )}
             </Typography>
-            <Typography variant="body2" color="text.secondary" component="span">
+            {/* Change the text color inside the card */}
+            <Typography
+              variant="body2"
+              component="span"
+              sx={{ color: "rgba(255, 255, 255, 0.85)" }} // A slightly softer white
+            >
               <p>Temperature = {info.temp}&deg;C</p>
               <p>Humidity = {info.humidity}</p>
               <p>Min Temp = {info.tempMin}&deg;C</p>
