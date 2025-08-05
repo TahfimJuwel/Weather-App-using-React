@@ -6,8 +6,8 @@ export default function WeatherApp() {
   const [weatherInfo, setWeatherInfo] = useState({
     city: "Ramu",
     temp: 25.2,
-    tempMin: 23,
-    tempMax: 27,
+    tempMin: 23.71,
+    tempMax: 27.22,
     humidity: 73,
     feelsLike: 24.6,
     weather: "Haze",
