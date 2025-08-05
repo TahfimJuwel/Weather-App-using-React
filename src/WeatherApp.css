@@ -1,27 +1,40 @@
+/* src/WeatherApp.css */
+
 .WeatherApp {
   text-align: center;
-  padding: 2.5rem;
-  border-radius: 20px;
+  margin-top: 20px;
+  /* 1. Reduced vertical padding even more for a tighter feel */
+  padding: 1.2rem 2.2rem; 
+  border-radius: 24px;
   width: 90%;
-  max-width: 450px;
-
-  /* The core "Glassmorphism" effect */
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px); /* For Safari */
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  /* 2. Slightly smaller max-width for better fit */
+  max-width: 400px;
+  /* 3. REMOVED: `margin-top: 10px;` - This fights with the `align-items: center` on the body. 
+     The centering is handled globally, so we don't need to push it down here. */
+  
+  /* The rest of the glass effect styles remain the same */
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
   box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-
-  /* Add a smooth transition for a premium feel */
-  transition: all 0.3s ease;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Style the main heading */
+.WeatherApp:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.45);
+}
+
+/* Style the main app title */
 .WeatherApp .app-title {
-  font-size: 2.5rem;
-  font-weight: 500;
-  letter-spacing: 1.5px;
-  margin-top: 0;
-  margin-bottom: 2rem;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
+  /* 4. Reduced font-size for a more compact header */
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  /* 5. REMOVED: `margin-top: 5px;` - The padding on the parent .WeatherApp already creates space. */
+  
+  /* 6. Reduced margin-bottom to pull the search box up */
+  margin-bottom: 1.2rem;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }

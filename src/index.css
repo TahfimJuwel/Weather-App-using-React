@@ -1,19 +1,86 @@
-/* Import a clean, modern font from Google Fonts */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+/* Import a font that complements the celestial theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700&display=swap');
 
+/* 1. Animation for the drifting cosmic clouds (nebula) */
+@keyframes moveNebula {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* 2. Animation for the twinkling stars */
+@keyframes twinkle {
+  from { background-position: 0 0; }
+  to { background-position: -10000px 5000px; }
+}
+
+/* 3. Animation for the shooting star */
+@keyframes shootingStar {
+  0% { transform: translateX(300vw) translateY(-100vh) rotate(215deg); }
+  100% { transform: translateX(-100vw) translateY(100vh) rotate(215deg); }
+}
+
+
+/* --- Main Body Styling --- */
 body {
   margin: 0;
-  font-family: 'Roboto', sans-serif; /* Use our new font */
-  color: #f0f0f0; /* A softer white for text */
-
-  /* This is key for centering our app card */
+  font-family: 'Orbitron', sans-serif; /* A futuristic, space-themed font */
+  color: #ffffff;
+  
+  /* Centering the main app card */
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
   
-  /* A beautiful, dark gradient background */
-  background: #283e51; /* Fallback for old browsers */
-  background: -webkit-linear-gradient(to right, #115451, #384c5d);
-  background: linear-gradient(to right, #6c2291, #676a31);
+  /* --- THE MULTI-LAYERED BACKGROUND --- */
+  /* The color of space behind everything */
+  background-color: #000010;
+  
+  /* We use multiple background images, layered on top of each other */
+  background-image:
+    /* Layer 1: The Nebula/Aurora (Top Layer) */
+    radial-gradient(ellipse at 70% 20%, rgba(204, 102, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(102, 178, 255, 0.4) 0%, transparent 50%),
+    
+    /* Layer 2: The Starfield (Bottom Layer) */
+    url('https://www.transparenttextures.com/patterns/stardust.png');
+  
+  /* Define how the Nebula layer animates */
+  background-size: 200% 200%;
+  animation: moveNebula 30s ease infinite;
+}
+
+
+/* --- Pseudo-elements for the animated star layers --- */
+
+/* This pseudo-element creates the distant, twinkling starfield effect */
+body::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  z-index: -1; /* Place it behind the nebula but above the base color */
+  
+  background-image: url('https://www.transparenttextures.com/patterns/stardust.png');
+  animation: twinkle 300s linear infinite; /* A very slow, subtle twinkle */
+}
+
+
+/* This pseudo-element creates the shooting star */
+body::after {
+  content: "";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  width: 3px;
+  height: 200px;
+  z-index: -1; /* Place it behind everything */
+  
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, transparent 100%);
+  border-radius: 50%;
+  filter: drop-shadow(0 0 10px #ffffff);
+  
+  /* Animation with a long delay for a rare, magical event */
+  animation: shootingStar 25s linear infinite;
+  animation-delay: 5s; /* Wait 5s before the first one appears */
 }

@@ -27,11 +27,11 @@ export default function InfoBox({ info }) {
         <Card
           sx={{
             maxWidth: 345,
-            backgroundColor: "rgba(50, 161, 126, 0.25)", // Bluish, semi-transparent
-            backdropFilter: "blur(5px)", // The "glass" blur effect
-            border: "1px solid rgba(255, 255, 255, 0.18)", // Optional subtle border
-            borderRadius: "16px", // Softer corners
-            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)", // A softer shadow
+            backgroundColor: "rgba(44, 83, 100, 0.35)", // A deep teal-blue
+            backdropFilter: "blur(5px)",
+            border: "1px solid rgba(255, 255, 255, 0.18)",
+            borderRadius: "16px",
+            boxShadow: "0 4px 30px rgba(0, 0, 0, 0.1)",
           }}
         >
           <CardMedia
