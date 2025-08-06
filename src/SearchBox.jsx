@@ -169,7 +169,7 @@ export default function SearchBox({ updateInfo }) {
 
   return (
     <div className="SearchBox">
-      <h3>Search for Weather</h3>
+      <h4>Search for City</h4>
       <form onSubmit={handleSubmit}>
         <TextField
           id="city"

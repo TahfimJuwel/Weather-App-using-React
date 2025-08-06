@@ -1,4 +1,31 @@
 .SearchBox {
   text-align: center;
   margin-top: 40px;
+  color: wheat;
+}
+
+/* Change the color of the label (e.g., "City Name") */
+.SearchBox .MuiInputLabel-root {
+  color: rgba(255, 255, 255, 0.7) !important;
+}
+
+/* Change the color of the text you type into the box */
+.SearchBox .MuiOutlinedInput-input {
+  color: #ffffff !important;
+}
+
+/* Change the default border color of the text field */
+.SearchBox .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.5) !important;
+}
+
+/* Change the border color when you hover over the text field */
+.SearchBox .MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Change the border color and add a glow when the text field is focused (clicked on) */
+.SearchBox .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: #ffffff !important;
+  box-shadow: 0 0 10px 2px rgba(204, 102, 255, 0.4); /* Optional: Keeps the purple glow */
 }

@@ -1,40 +1,86 @@
-/* src/WeatherApp.css */
+/* Import a font that complements the celestial theme */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-.WeatherApp {
-  text-align: center;
-  margin-top: 20px;
-  /* 1. Reduced vertical padding even more for a tighter feel */
-  padding: 1.2rem 2.2rem; 
-  border-radius: 24px;
-  width: 90%;
-  /* 2. Slightly smaller max-width for better fit */
-  max-width: 400px;
-  /* 3. REMOVED: `margin-top: 10px;` - This fights with the `align-items: center` on the body. 
-     The centering is handled globally, so we don't need to push it down here. */
-  
-  /* The rest of the glass effect styles remain the same */
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0));
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* --- Universal Box Sizing --- */
+* {
+  box-sizing: border-box;
 }
 
-.WeatherApp:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 40px 0 rgba(0, 0, 0, 0.45);
+/* --- Animations --- */
+@keyframes moveNebula { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+@keyframes twinkle { from { background-position: 0 0; } to { background-position: -10000px 5000px; } }
+@keyframes shootingStar { 0% { transform: translateX(300vw) translateY(-100vh) rotate(215deg); } 100% { transform: translateX(-100vw) translateY(100vh) rotate(215deg); } }
+@keyframes pulseGlow { 0%, 100% { text-shadow: 0 0 5px #d8b4fe, 0 0 10px #d8b4fe, 0 0 15px #818cf8; } 50% { text-shadow: 0 0 10px #d8b4fe, 0 0 20px #d8b4fe, 0 0 30px #818cf8; } }
+
+/* --- Main Body Styling --- */
+body {
+  margin: 0; padding: 20px; font-family: 'Orbitron', sans-serif;
+  color: #ffffff; display: flex; flex-direction: column;
+  justify-content: center; align-items: center; min-height: 100vh;
+  gap: 2rem; background-color: #000010;
+  background-image:
+    radial-gradient(ellipse at 70% 20%, rgba(204, 102, 255, 0.4) 0%, transparent 50%),
+    radial-gradient(ellipse at 30% 80%, rgba(102, 178, 255, 0.4) 0%, transparent 50%),
+    url('https://www.transparenttextures.com/patterns/stardust.png');
+  background-size: 200% 200%; animation: moveNebula 30s ease infinite;
 }
 
-/* Style the main app title */
-.WeatherApp .app-title {
-  /* 4. Reduced font-size for a more compact header */
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 1px;
-  /* 5. REMOVED: `margin-top: 5px;` - The padding on the parent .WeatherApp already creates space. */
+/* --- Pseudo-elements for Background --- */
+body::before, body::after { content: ""; position: absolute; z-index: -1; will-change: transform; }
+body::before { top: 0; left: 0; right: 0; bottom: 0; background-image: url('https://www.transparenttextures.com/patterns/stardust.png'); animation: twinkle 300s linear infinite; }
+body::after { position: fixed; top: 50%; left: 50%; width: 3px; height: 200px; background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8) 0%, transparent 100%); border-radius: 50%; filter: drop-shadow(0 0 10px #ffffff); animation: shootingStar 25s linear infinite 5s; }
+
+/* --- App Container --- */
+.app-container {
+  display: flex; flex-direction: column; align-items: center;
+  gap: 1.5rem; width: 100%; max-width: 400px;
+}
+
+/* --- Aesthetic Title --- */
+.app-title {
+  font-weight: 700 !important; letter-spacing: 3px !important;
+  text-align: center; white-space: nowrap;
+  background: linear-gradient(90deg, #d8b4fe, #818cf8, #60a5fa);
+  -webkit-background-clip: text; background-clip: text;
+  color: transparent !important;
+  animation: pulseGlow 5s ease-in-out infinite;
+}
+
+.glass-panel {
+  /* MORE TRANSPARENT BACKGROUND */
+  background: rgba(30, 35, 90, 0.15); /* Reduced alpha from 0.25 to 0.15 */
   
-  /* 6. Reduced margin-bottom to pull the search box up */
-  margin-bottom: 1.2rem;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  /* LESS BLUR TO SEE BACKGROUND CLEARER */
+  backdrop-filter: blur(8px); /* Reduced blur from 12px to 8px */
+  -webkit-backdrop-filter: blur(8px);
+  
+  /* MORE SUBTLE BORDER */
+  border: 1px solid rgba(255, 255, 255, 0.12); /* Reduced alpha from 0.18 to 0.12 */
+  
+  box-shadow: 0 8px 32px 0 rgba(18, 24, 90, 0.25);
+  border-radius: 16px; padding: 20px; width: 100%;
+}
+
+/* --- Styles for Loading and Error Messages --- */
+.status-message {
+  display: flex; flex-direction: column; justify-content: center;
+  align-items: center; text-align: center; gap: 1rem;
+  padding: 30px 20px !important; min-height: 200px;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* --- InfoBox Styles --- */
+.InfoBox .MuiCard-root {
+  background: none !important; box-shadow: none !important;
+  padding: 0 !important; color: white !important; width: 100%;
+}
+.InfoBox .MuiCardMedia-root { border-radius: 10px; }
+
+/* --- Mobile Optimizations --- */
+@media (max-width: 600px) {
+  body { padding: 15px; gap: 1.5rem; }
+  .app-container { gap: 1rem; }
+  .glass-panel { padding: 15px; }
+  .InfoBox p { margin-top: 0.5rem; margin-bottom: 0.5rem; line-height: 1.4; font-size: 0.9rem; }
+  .app-title { font-size: 2.2rem !important; letter-spacing: 2px !important; }
 }
