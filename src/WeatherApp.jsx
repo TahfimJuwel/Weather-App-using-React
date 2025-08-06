@@ -16,7 +16,7 @@ export default function WeatherApp() {
   return (
     <div className="app-container">
       <Typography className="app-title" variant="h3" component="h1">
-        Tahfim-itive Forecast
+        La La Weather 
       </Typography>
 
       {/* The SearchBox panel now has an extra class */}
@@ -34,7 +34,7 @@ export default function WeatherApp() {
             sx={{ fontSize: "4rem", color: "rgba(255, 255, 255, 0.7)" }}
           />
           <Typography variant="h6" component="p">
-            Enter a city to begin your journey in the Atmosphere.
+            Enter a city to begin your journey in the Atmosphere with Tahfim.
           </Typography>
         </div>
       )}
